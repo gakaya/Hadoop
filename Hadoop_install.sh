@@ -98,11 +98,11 @@ HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib"
 
 source ~/.bashrc
+
 str1="export JAVA_HOME=\${JAVA_HOME}"
 str2="export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre"
-
-# should be added after hadoop copy from MASTER!
-#sed "s;${str1};${str2};" /usr/local/hadoop/etc/hadoop/hadoop-env.sh > /usr/local/hadoop/etc/hadoop/hadoop-env.sh.tmp; mv /usr/local/hadoop/etc/hadoop/hadoop-env.sh.tmp /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+#should be added after hadoop copy from MASTER!
+sed "s;${str1};${str2};" /usr/local/hadoop/etc/hadoop/hadoop-env.sh > /usr/local/hadoop/etc/hadoop/hadoop-env.sh.tmp; mv /usr/local/hadoop/etc/hadoop/hadoop-env.sh.tmp /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 
 
 ### Configuration:
@@ -222,7 +222,6 @@ if [[ $TYPE == 'master' ]]; then
 	touch $HADOOP_HOME/etc/hadoop/masters
 	echo "${NAME}" > $HADOOP_HOME/etc/hadoop/masters
 	
-	# didn't work!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	for i in `seq 1 $SlavesNumber`; 
 	do
 		echo "i equals to $i"
@@ -237,8 +236,3 @@ if [[ $TYPE == 'master' ]]; then
 
 fi
 
-
-
-
-
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzfyCKRGvcuC6oIl6yYCsMc+Z/R0X1ApZ551z5v/X82yTh4odoLN6jGB/3+sQWk4RvBLIzuwjZWdDQmSFG/0HMKY8aWNPQr3+bHMatZ/sVhGvc2A7ab8c5xnc80E1MWanM9LMStVcmKuKKRUEN7BIgP+9FiC1Ee9EDSTcnwI5CDEHjhn/AQWfFEk8Ig4trKPhS7AotcoidV2oTQYB4GeliCavTZRY7aWVckCWiHVcRlLwTdesNWegWV0MkEcBzN85jSEK6AAzQnagM32Y4BI2qwpi+s8ysPp8BT1nih++xi1zC/FsYL+WLrsw0juhz49Plc3BJI9JtiCZl5qPRhuxn root@807256.NameNode
